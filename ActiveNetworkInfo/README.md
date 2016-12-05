@@ -1,5 +1,4 @@
 # Android-API
-Android API helper classes
 
 ### unit ActiveNetworkInfo.Android:
 
