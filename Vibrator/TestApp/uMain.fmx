@@ -1,0 +1,101 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 395
+  ClientWidth = 294
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Client
+    Padding.Left = 10.000000000000000000
+    Padding.Top = 10.000000000000000000
+    Padding.Right = 10.000000000000000000
+    Padding.Bottom = 10.000000000000000000
+    Size.Width = 294.000000000000000000
+    Size.Height = 347.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object editValue: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 0
+      Text = '1000,2000,1000,3000'
+      Position.X = 10.000000000000000000
+      Position.Y = 10.000000000000000000
+      Size.Width = 274.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'value or value, value, ..., value'
+    end
+    object Layout2: TLayout
+      Align = HorzCenter
+      Position.X = 89.000000000000000000
+      Position.Y = 106.000000000000000000
+      Size.Width = 115.000000000000000000
+      Size.Height = 231.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object butVibrate: TButton
+        Align = Top
+        Position.Y = 44.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Vibrate'
+        OnClick = butVibrateClick
+      end
+      object butHasVirator: TButton
+        Align = Top
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'hasVibrator'
+        OnClick = butHasViratorClick
+      end
+      object butCancel: TButton
+        Align = Top
+        Position.Y = 88.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Text = 'Cancel'
+        OnClick = butCancelClick
+      end
+    end
+    object labelHasVibrator: TLabel
+      Align = Top
+      AutoSize = True
+      Margins.Top = 10.000000000000000000
+      Margins.Bottom = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 52.000000000000000000
+      Size.Width = 274.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Trimming = None
+      Text = 'Check whether the hardware has a vibrator. '
+    end
+  end
+  object ToolBar1: TToolBar
+    Size.Width = 294.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Label1: TLabel
+      Align = Center
+      AutoSize = True
+      Size.Width = 157.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.WordWrap = False
+      TextSettings.Trimming = None
+      Text = 'Test vibrator class '
+    end
+  end
+end
