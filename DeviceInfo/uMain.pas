@@ -18,8 +18,8 @@ type
   private
     { Private declarations }
     FPermissionReadPhoneState: string;
-    procedure AddListItem(const AName, AValue: string);
-    procedure AddListHeader(const AName: string);
+    procedure AddListItem(const AText, ADetail: string);
+    procedure AddListHeader(const AText: string);
     procedure LoadInfo;
   public
     { Public declarations }
@@ -36,22 +36,22 @@ uses
   System.Permissions, Androidapi.Helpers, Androidapi.JNI.JavaTypes, Androidapi.JNI.Os, Androidapi.JNI.Provider,
   Androidapi.JNI.GraphicsContentViewText, Androidapi.JNIBridge, Androidapi.JNI, Androidapi.JNI.Bluetooth;
 
-procedure TFormMain.AddListHeader(const AName: string);
+procedure TFormMain.AddListHeader(const AText: string);
 var
   ListBoxGroupHeader: TListBoxGroupHeader;
 begin
   ListBoxGroupHeader := TListBoxGroupHeader.Create(lbListInfo);
-  ListBoxGroupHeader.Text := AName;
+  ListBoxGroupHeader.Text := AText;
   lbListInfo.AddObject(ListBoxGroupHeader);
 end;
 
-procedure TFormMain.AddListItem(const AName, AValue: string);
+procedure TFormMain.AddListItem(const AText, ADetail: string);
 var
   ListBoxItem: TListBoxItem;
 begin
   ListBoxItem := TListBoxItem.Create(lbListInfo);
-  ListBoxItem.Text := AName;
-  ListBoxItem.ItemData.Detail := AValue;
+  ListBoxItem.Text := AText;
+  ListBoxItem.ItemData.Detail := ADetail;
   lbListInfo.AddObject(ListBoxItem);
 end;
 
