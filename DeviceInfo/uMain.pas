@@ -128,15 +128,15 @@ begin
 
     StrSUPPORTED_32 := '';
     for I := 0 to SUPPORTED_32_BIT_ABIS.Length - 1 do
-      StrSUPPORTED_32 := StrSUPPORTED_32 + JStringToString(SUPPORTED_32_BIT_ABIS.Items[I]);
+      StrSUPPORTED_32 := StrSUPPORTED_32 + JStringToString(SUPPORTED_32_BIT_ABIS.Items[I]) + ' ';
 
     StrSUPPORTED_64 := '';
     for J := 0 to SUPPORTED_64_BIT_ABIS.Length - 1 do
-      StrSUPPORTED_64 := StrSUPPORTED_64 + JStringToString(SUPPORTED_64_BIT_ABIS.Items[J]);
+      StrSUPPORTED_64 := StrSUPPORTED_64 + JStringToString(SUPPORTED_64_BIT_ABIS.Items[J]) + ' ';
 
     StrSUPPORTED_ABIS := '';
     for K := 0 to SUPPORTED_ABIS.Length - 1 do
-      StrSUPPORTED_ABIS := StrSUPPORTED_ABIS + JStringToString(SUPPORTED_ABIS.Items[K]);
+      StrSUPPORTED_ABIS := StrSUPPORTED_ABIS + JStringToString(SUPPORTED_ABIS.Items[K]) + ' ';
 
     AddListItem('SUPPORTED_32_BIT_ABIS', StrSUPPORTED_32);
     AddListItem('SUPPORTED_64_BIT_ABIS', StrSUPPORTED_64);
