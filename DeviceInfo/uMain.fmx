@@ -1,0 +1,54 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = 'DeviceInfo'
+  ClientHeight = 480
+  ClientWidth = 310
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object lbListInfo: TListBox
+    Align = Client
+    Size.Width = 310.000000000000000000
+    Size.Height = 432.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'transparentlistboxstyle'
+    TabOrder = 0
+    DisableFocusEffect = True
+    DefaultItemStyles.ItemStyle = 'listboxitembottomdetail'
+    DefaultItemStyles.GroupHeaderStyle = ''
+    DefaultItemStyles.GroupFooterStyle = ''
+    GroupingKind = Grouped
+    Viewport.Width = 310.000000000000000000
+    Viewport.Height = 432.000000000000000000
+  end
+  object ToolBar1: TToolBar
+    Size.Width = 310.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Label1: TLabel
+      Align = Contents
+      Size.Width = 310.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'toollabel'
+      TextSettings.HorzAlign = Center
+      Text = 'Device Information'
+      TabOrder = 0
+    end
+    object sbLoadInfo: TSpeedButton
+      Align = Right
+      Margins.Right = 10.000000000000000000
+      Position.X = 252.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'infotoolbutton'
+      Text = 'LoadInfo'
+      OnClick = sbLoadInfoClick
+    end
+  end
+end
