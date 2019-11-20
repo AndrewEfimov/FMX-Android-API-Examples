@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 395
+  ClientHeight = 499
   ClientWidth = 294
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -15,7 +15,7 @@ object Form2: TForm2
     Padding.Right = 10.000000000000000000
     Padding.Bottom = 10.000000000000000000
     Size.Width = 294.000000000000000000
-    Size.Height = 347.000000000000000000
+    Size.Height = 451.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     object editValue: TEdit
@@ -35,37 +35,67 @@ object Form2: TForm2
       Position.X = 89.000000000000000000
       Position.Y = 106.000000000000000000
       Size.Width = 115.000000000000000000
-      Size.Height = 231.000000000000000000
+      Size.Height = 335.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      object butVibrate: TButton
+      object butVibrateTestZero: TButton
         Align = Top
         Position.Y = 44.000000000000000000
         Size.Width = 115.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 0
-        Text = 'Vibrate'
-        OnClick = butVibrateClick
+        TabOrder = 3
+        Text = 'Test Zero'
+        OnClick = butVibrateTestZeroClick
       end
       object butHasVirator: TButton
         Align = Top
         Size.Width = 115.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 4
         Text = 'hasVibrator'
         OnClick = butHasViratorClick
       end
       object butCancel: TButton
+        Align = Top
+        Position.Y = 220.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Text = 'Cancel'
+        OnClick = butCancelClick
+      end
+      object butVibrateTestOne: TButton
         Align = Top
         Position.Y = 88.000000000000000000
         Size.Width = 115.000000000000000000
         Size.Height = 44.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
-        Text = 'Cancel'
-        OnClick = butCancelClick
+        Text = 'Test One'
+        OnClick = butVibrateTestOneClick
+      end
+      object butVibrateTestTwo: TButton
+        Align = Top
+        Position.Y = 132.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Test Two'
+        OnClick = butVibrateTestTwoClick
+      end
+      object butVibrateTestThree: TButton
+        Align = Top
+        Position.Y = 176.000000000000000000
+        Size.Width = 115.000000000000000000
+        Size.Height = 44.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Test Three'
+        OnClick = butVibrateTestThreeClick
       end
     end
     object labelHasVibrator: TLabel
@@ -90,7 +120,7 @@ object Form2: TForm2
     object Label1: TLabel
       Align = Center
       AutoSize = True
-      Size.Width = 157.000000000000000000
+      Size.Width = 154.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
       TextSettings.WordWrap = False

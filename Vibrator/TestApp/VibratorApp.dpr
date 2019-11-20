@@ -4,7 +4,8 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   uMain in 'uMain.pas' {Form2},
-  Vibrator.Android in '..\class\Vibrator.Android.pas';
+  uVibratorHelper in '..\class\uVibratorHelper.pas',
+  Androidapi.JNI.os.Vibration in '..\class\Androidapi.JNI.os.Vibration.pas';
 
 {$R *.res}
 
