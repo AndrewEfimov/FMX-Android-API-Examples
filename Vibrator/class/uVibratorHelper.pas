@@ -43,7 +43,7 @@ type
     class function CheckPermission: Boolean;
     /// <summary> Check whether the hardware has a vibrator. </summary>
     class function hasVibrator: Boolean;
-	/// <summary> Vibrate constantly for the specified period of time. </summary>
+    /// <summary> Vibrate constantly for the specified period of time. </summary>
     class procedure vibrate(const AMilliseconds: Int64); overload;
     /// <summary> Vibrate with a given pattern. </summary>
     class procedure vibrate(const APattern: TJavaArray<Int64>; const ARepeat: Integer); overload;
