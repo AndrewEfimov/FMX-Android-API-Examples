@@ -1,11 +1,11 @@
 unit uMain;
-
+
 interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.StdCtrls, FMX.Controls.Presentation, FMX.Edit,
-  FMX.Layouts, Androidapi.JNIBridge;
+  FMX.Layouts;
 
 type
   TForm2 = class(TForm)
@@ -31,6 +31,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    function CheckPermission: Boolean;
   end;
 
 var
@@ -41,7 +42,7 @@ implementation
 {$R *.fmx}
 
 uses
-  uVibratorHelper;
+  System.Permissions, Androidapi.Helpers, Androidapi.JNI.JavaTypes, Androidapi.JNI.Os, uVibratorHelper;
 
 procedure TForm2.butHasViratorClick(Sender: TObject);
 begin
@@ -53,16 +54,18 @@ end;
 
 procedure TForm2.butVibrateTestOneClick(Sender: TObject);
 const
-  ArrayStr: array[0..3] of string = ('200', '1000', '200', '2000');
+  ArrayStr: array [0 .. 3] of string = ('200', '1000', '200', '2000');
 begin
   // Test 1
-  TVibratorHelper.vibrate(ArrayStr, -1);
+  if CheckPermission then
+    TVibratorHelper.vibrate(ArrayStr, 2);
 end;
 
 procedure TForm2.butVibrateTestThreeClick(Sender: TObject);
 begin
   // Test 3: TJavaArray<Int64>
-  TVibratorHelper.vibrate(TJavaArrayHelper.ArrayStrToJavaArrayInt64(['100', '2000', '100', '3000']), -1);
+  if CheckPermission then
+    TVibratorHelper.vibrate(TJavaArrayHelper.ArrayStrToJavaArrayInt64(['100', '2000', '100', '3000']), -1);
 end;
 
 procedure TForm2.butVibrateTestTwoClick(Sender: TObject);
@@ -70,7 +73,8 @@ const
   ArrayInt64: array of Int64 = [500, 2000, 500, 2000];
 begin
   // Test 2
-  TVibratorHelper.vibrate(ArrayInt64, -1);
+  if CheckPermission then
+    TVibratorHelper.vibrate(ArrayInt64, -1);
 end;
 
 procedure TForm2.butVibrateTestZeroClick(Sender: TObject);
@@ -78,15 +82,23 @@ var
   Value: string;
 begin
   Value := Trim(editValue.Text);
-  if Value.Contains(',') then
-    TVibratorHelper.vibrate(Value.Split([',']), -1)
-  else
-    TVibratorHelper.vibrate(Value.ToInt64);
+  if CheckPermission then
+    if Value.Contains(',') then
+      TVibratorHelper.vibrate(Value.Split([',']), -1)
+    else
+      TVibratorHelper.vibrate(Value.ToInt64);
+end;
+
+function TForm2.CheckPermission: Boolean;
+begin
+  Result := PermissionsService.IsPermissionGranted(JStringToString(TJManifest_permission.JavaClass.vibrate));
 end;
 
 procedure TForm2.butCancelClick(Sender: TObject);
 begin
-  TVibratorHelper.cancel;
+  if CheckPermission then
+    TVibratorHelper.cancel;
 end;
 
 end.
+

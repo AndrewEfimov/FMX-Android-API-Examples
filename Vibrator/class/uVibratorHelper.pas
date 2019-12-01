@@ -13,10 +13,7 @@ unit uVibratorHelper;
 interface
 
 uses
-  {$IF CompilerVersion >= 33.0}
-  System.Permissions,
-  {$ENDIF}
-  Androidapi.Helpers, Androidapi.JNI.JavaTypes, Androidapi.JNI.Os,
+  Androidapi.Helpers, Androidapi.JNI.Os,
   Androidapi.JNI.GraphicsContentViewText, Androidapi.JNIBridge,
   System.SysUtils, Androidapi.JNI.Os.Vibration;
 
@@ -29,18 +26,12 @@ type
 
   TVibratorHelper = class(TObject)
   private
-    class var SDK_INT: Integer;
+    class var FSDK_INT: Integer;
     class var FJVibrator: JVibrator;
     class constructor Create;
-    {$IF CompilerVersion < 33.0}
-    /// <summary> For Delphi Berlin and Tokyo </summary>
-    class function OldCheckPermission: Boolean;
-    {$ENDIF}
   public
     /// <summary> Turn the vibrator off. </summary>
     class procedure cancel;
-    /// <summary> Check permission "android.permission.VIBRATE" </summary>
-    class function CheckPermission: Boolean;
     /// <summary> Check whether the hardware has a vibrator. </summary>
     class function hasVibrator: Boolean;
     /// <summary> Vibrate constantly for the specified period of time. </summary>
@@ -81,22 +72,10 @@ begin
     FJVibrator.cancel;
 end;
 
-class function TVibratorHelper.CheckPermission: Boolean;
-begin
-{$IF CompilerVersion >= 33.0}
-  Result := PermissionsService.IsPermissionGranted(JStringToString(TJManifest_permission.JavaClass.vibrate));
-{$ELSE}
-  Result := OldCheckPermission;
-{$ENDIF}
-end;
-
 class constructor TVibratorHelper.Create;
 begin
-  SDK_INT := TJBuild_VERSION.JavaClass.SDK_INT;
-  FJVibrator := nil;
-
-  if CheckPermission then
-    FJVibrator := TJVibrator.Wrap(TAndroidHelper.Context.getSystemService(TJContext.JavaClass.VIBRATOR_SERVICE))
+  FSDK_INT := TJBuild_VERSION.JavaClass.SDK_INT;
+  FJVibrator := TJVibrator.Wrap(TAndroidHelper.Context.getSystemService(TJContext.JavaClass.VIBRATOR_SERVICE))
 end;
 
 class function TVibratorHelper.hasVibrator: Boolean;
@@ -104,31 +83,10 @@ begin
   Result := (FJVibrator <> nil) and FJVibrator.hasVibrator;
 end;
 
-{$IF CompilerVersion < 33.0}
-class function TVibrator.OldCheckPermission: Boolean;
-const
-  VibratePermission = 'android.permission.VIBRATE';
-var
-  PackageName, Permission: JString;
-  Context: JContext;
-  PermissionGranted: Integer;
-begin
-  PackageName := TAndroidHelper.Context.getPackageName;
-  Context := TAndroidHelper.Context;
-  Permission := StringToJString(VibratePermission);
-  PermissionGranted := TJPackageManager.JavaClass.PERMISSION_GRANTED;
-
-  if SDK_INT < 23 then
-    Result := Context.getPackageManager.CheckPermission(Permission, PackageName) = PermissionGranted
-  else
-    Result := Context.checkSelfPermission(Permission) = PermissionGranted;
-end;
-{$ENDIF}
-
 class procedure TVibratorHelper.vibrate(const AMilliseconds: Int64);
 begin
   if hasVibrator then
-    if SDK_INT >= 26 then
+    if FSDK_INT >= 26 then
       FJVibrator.vibrate(TJVibrationEffect.JavaClass.createOneShot(AMilliseconds,
         TJVibrationEffect.JavaClass.DEFAULT_AMPLITUDE))
     else
@@ -151,7 +109,7 @@ end;
 class procedure TVibratorHelper.vibrate(const APattern: TJavaArray<Int64>; const ARepeat: Integer);
 begin
   if hasVibrator then
-    if SDK_INT >= 26 then
+    if FSDK_INT >= 26 then
       FJVibrator.vibrate(TJVibrationEffect.JavaClass.createWaveform(APattern, ARepeat))
     else
       FJVibrator.vibrate(APattern, ARepeat);
